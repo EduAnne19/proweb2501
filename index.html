@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mueblería</title>
+</head>
+
+<body onload="ver(https://practica1.test/inicio.html)">
+    <div>
+        <h1>Mueblería El Colchoncito</h1>
+    </div>
+    <div>
+        <h2>Menú</h2>
+    </div>
+
+    <div id="menufijo">
+        <ul>
+            <li><button onclick="ver('https://practica1.test/blanca/blanca.html')">Linea blanca</button></li>
+            <li><button onclick="ver('https://practica1.test/interior/interior.html')">Interiores</button></li>
+            <li><button onclick="ver('https://practica1.test/exterior/exterior.html')">Exteriores</button></li>
+        </ul>
+    </div>
+    <div id="cont1">
+        <div><a href="https://www.lfdfurniture.com/" target="_blank">Furniture</a></div>
+        <div><a href="https://www.homedepot.com.mx/" target="_blank">HomeDepot</a></div>
+        <div><a href="https://www.sears.com/" target="_blank">Sears</a></div>
+
+    </div>
+
+</body>
+
+<script>
+    function ver(url) {
+        let div1 = document.querySelector("#cont1");
+
+        fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Error al cargar la página");
+                }
+                return response.text();
+            })
+            .then(data => {
+                div1.innerHTML = data;
+            })
+            .catch(error => {
+                div1.innerHTML = "<p style='color:red;'>No se pudo cargar el contenido.</p>";
+                console.error("Error:", error);
+            });
+    }
+</script>
+
+</html>
